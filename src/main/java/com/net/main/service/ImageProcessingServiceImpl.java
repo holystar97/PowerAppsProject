@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.net.main.dao.ImageDetectionDao;
 import com.net.main.dao.ImageRecognitionDao;
 import com.net.main.dao.ImageUploadDao;
+import com.net.main.dao.TextUploadDao;
 import com.net.main.dto.ImageDto;
 import com.net.main.dto.ResultVO;
 
@@ -21,6 +22,9 @@ public class ImageProcessingServiceImpl implements ImageProcessingService {
 	@Autowired
 	private ImageDetectionDao imageDetectionDao;
 	
+	@Autowired
+	private TextUploadDao textUploadDao;
+
 	@Override
 	public ResultVO imageProcessing(MultipartFile file) {
 		//분석 결과 저장
@@ -34,7 +38,7 @@ public class ImageProcessingServiceImpl implements ImageProcessingService {
 			//이미지 감지
 			imageDto = imageDetectionDao.doDection("이미지 더미 데이터");
 
-			//이미지 인식(이미지 분석 후 ResulVO를 추출하는 곳인듯??)
+			//이미지 인식(이미지 분석 후 ResulVO를 추출하는 곳)
 			resultVo = imageRecognitionDao.doRecognition(imageDto);
 			if(resultVo == null) {
 				System.out.println("## 이미지 인식 실패 ##");

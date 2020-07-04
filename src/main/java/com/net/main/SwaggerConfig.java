@@ -17,7 +17,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
 
         return new ApiInfoBuilder()
-                .title("ImageUploadService")
+                .title("ImageUploadService Api List")
                 .description("My API")
                 .build();
     }
@@ -31,7 +31,8 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors
                         .basePackage("com.net.main"))
                 //RequestMapping의 value를 입력 시 해당 Request 정의문을 import함
-                .paths(PathSelectors.ant("/upload/**"))
+                //.paths(PathSelectors.ant("/upload/**"))
+                .paths(PathSelectors.ant("/textupload/**"))
                 .build();
     }
 }

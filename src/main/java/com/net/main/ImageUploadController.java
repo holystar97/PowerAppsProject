@@ -22,7 +22,7 @@ public class ImageUploadController {
 	//Multipartform/data 형식
 	@RequestMapping(path = "/upload", method = RequestMethod.POST, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	//Swagger-ui에 등록 어노테이션
-	@ApiOperation(value = "ImageUploadSample", tags="sample")
+	//@ApiOperation(value = "ImageUploadSample", tags="sample")
 	public @ResponseBody ResultVO add(@RequestParam("image") MultipartFile file) throws Exception {
 	    
 		ResultVO resultVo = imageProcessingServiceImpl.imageProcessing(file);
