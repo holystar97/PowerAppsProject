@@ -23,7 +23,7 @@ public class TextUploadController {
 	@RequestMapping(path = "/textupload", method = RequestMethod.POST)
 	//Swagger-ui에 등록 어노테이션
 	@ApiOperation(value = "TextUploadSample", tags="TextUploadSample")
-	public @ResponseBody void add(@RequestParam HashMap<String, String> resultObj) throws Exception {
+	public void add(@RequestParam HashMap<String, String> resultObj) throws Exception {
 		System.out.println("### TextUpload 진행 ###");
 		for(String key : resultObj.keySet()) {
 			System.out.println(key + " : " + resultObj.get(key));
@@ -32,7 +32,9 @@ public class TextUploadController {
 		textUploadDao.upload(resultObj);
 		
 		//System.out.println(resultVo.toString());
-		
-	    //Return
+		/*
+		ResultVO result = null;
+	    return result;
+	    */
 	}
 }
