@@ -1,5 +1,7 @@
 package com.net.main.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +26,9 @@ public class ImageProcessingServiceImpl implements ImageProcessingService {
 	
 	@Autowired
 	private TextUploadDao textUploadDao;
+	
+	//분석 데이터 저장 경로
+	private static final String usePath = "pretext";
 
 	@Override
 	public ResultVO imageProcessing(MultipartFile file) {
@@ -43,6 +48,14 @@ public class ImageProcessingServiceImpl implements ImageProcessingService {
 			if(resultVo == null) {
 				System.out.println("## 이미지 인식 실패 ##");
 			}
+			//분석 데이터 Text 업로드 진행
+			HashMap<String, String> resultMap = new HashMap<String,String>();
+			
+			resultMap.put("bizno", resultVo.getBizno());
+			resultMap.put("merchant", resultVo.getMerchant());
+			resultMap.put("type", resultVo.getType());
+			
+			textUploadDao.upload(resultMap, usePath);
 			
 		} else {
 			System.out.println("## 이미지 업로드 실패 ##");
