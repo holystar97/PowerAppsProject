@@ -25,14 +25,24 @@ public class SwaggerConfig {
     @Bean
     public Docket commonApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("example")
+                .groupName("imageController")
                 .apiInfo(this.apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors
                         .basePackage("com.net.main"))
                 //RequestMapping의 value를 입력 시 해당 Request 정의문을 import함
-                //.paths(PathSelectors.ant("/upload/**"))
-                .paths(PathSelectors.ant("/textupload/**"))
+                .paths(PathSelectors.ant("/upload/**"))
                 .build();
+    }
+    @Bean
+    public Docket commonApi2() {
+    	return new Docket(DocumentationType.SWAGGER_2)
+    			.groupName("textController")
+    			.apiInfo(this.apiInfo())
+    			.select()
+    			.apis(RequestHandlerSelectors
+    					.basePackage("com.net.main"))
+    			.paths(PathSelectors.ant("/textupload/**"))
+    			.build();
     }
 }
